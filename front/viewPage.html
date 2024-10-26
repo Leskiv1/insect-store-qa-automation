@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.cdnfonts.com/css/gilroy-bold" rel="stylesheet">
+  </head>
+
+<body>
+    <header class="header-section margin-bottom-header">
+      <div class="container header">
+        <div class="wrapper">
+          <a href="./index.html"><p class="logo">Relationz</p></a>
+          <a class="header-link-first" href="#">Login</a>
+        </div>
+        <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+
+        <label for="burger-toggle" class="burger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      
+        <div class="links">
+        <ul class="list-link">
+          <li><a class="header-link" href="./viewPage.html">Services</a></li>
+          <li><a class="header-link" href="./viewPage.html">Enterprise</a></li>
+          <li><a class="header-link" href="./viewPage.html">Pricing</a></li>
+        </ul>
+          <a class="btn--try-for-free" href="#">Try it for free</a>
+        </div>
+      </div>
+    </header>
+
+    <section class="insects">
+      <div class="container">
+        <div class="form">
+          <div class="create">
+            <h2>Add insect</h2>
+            <label for="name">Name</label>
+            <input type="text" id="name_create" name="name">
+            <label for="speed">Speed</label>
+            <input type="number" min="0" id="speed_create" name="speed">
+            <label for="mass">Mass</label>
+            <input type="number" min="0" id="mass_create" name="mass">
+            <button id="submit">Submit</button>
+          </div>
+          <div class="find">
+            <h2>Find and sort insects</h2>
+            <label for="name_find">Write name to find</label>
+            <input type="text" id="name_find" name="name_find">
+            <label for="speed_sort">Sort insects by speed</label>
+            <select name="speed_sort" id="speed_sort">
+              <option value="not_sort">not sort</option>
+              <option value="descending">sort by descending</option>
+              <option value="ascending">sort by ascending</option>
+            </select>
+            <div class="buttons">
+              <button id="find">Find</button>
+              <button id="cancel">Cancel</button>
+              <button id="count">Count weight</button>
+            </div>
+          </div>
+        </div>
+        <ul id='cards_container' class="cards_container">
+        </ul>
+      </div>
+    </section>
+    <div id="popup" class="popup">
+      <div class="popup_text">
+        <p></p>
+      </div>
+      <div id="popup_close" class="popup_close">
+      </div>
+    </div>
+
+    <script type="module" src="./js/index.js"></script>
+</body>
+
+</html>

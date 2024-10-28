@@ -1,0 +1,62 @@
+.hero {
+	padding: 100px 0 0 0;
+	.container {
+		display: flex;
+		gap: 200px;
+		justify-content: center; 
+		align-items: center;
+		height: 80vh;
+		background-color: #C1DCDC;
+		border-radius: 50px;
+
+
+			.information{
+				padding-left: 50px; 
+				display: flex;
+    			flex-direction: column; /* Встановлює напрямок елементів в колонку */
+				gap: 30px;
+
+				> div{
+					display: flex;
+					flex-direction: row; /* Розташовує елементи в один рядок */
+					align-items: center; /* Вирівнює елементи по вертикалі */
+					gap: 10px;
+					font-size: 30px;
+
+					p1{
+						font-size: 55px;
+					}
+				}
+			}
+		
+
+			img {
+				max-width: 90%; /* Зображення не перевищує ширину контейнера */
+				max-height: 90%; /* Зображення не перевищує висоту контейнера */
+				 width: auto; /* Зберігає пропорції */
+				 height: auto;
+			}
+
+
+
+			h2 {
+				color: #000;
+				font-family: Poppins;
+				font-size: 50px;
+				font-style: normal;
+				font-weight: 800;
+				line-height: 64px;
+			}
+
+			h3{
+				color: var(--Color-2, #1E1E1E);
+				font-family: Poppins;
+				font-size: 18px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: normal;
+			}
+
+
+	}
+}

@@ -1,0 +1,21 @@
+.viewMore {
+	width: 168px;
+	height: 51px;
+	border: 1px solid #acacac;
+	border-radius: 8px;
+	background: var( #C1DCDC);
+	transition: all 0.2s ease-in-out;
+	margin-bottom: 20px;
+
+	span {
+		color: #3E3E3E;
+		font-size: 1.2rem;
+		font-style: normal;
+		font-weight: 500;
+		line-height: normal;
+	}
+
+	&:hover {
+		background-color: rgba(255, 0, 0, 0.1);
+	}
+}

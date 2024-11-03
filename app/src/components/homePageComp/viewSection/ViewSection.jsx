@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styled/viewSection.scss';
+import './viewSection.scss';
 import Card from '../../generalComp/viewCard/ViewCard';
 import ViewMore from "../../generalComp/SeeMore/SeeMore";
 import butterflyImg from '../../../assets/imgs/butterfly_2.png';

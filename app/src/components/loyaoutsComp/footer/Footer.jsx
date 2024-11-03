@@ -1,5 +1,5 @@
 import React from 'react'
-import '../../../styled/footer.scss';
+import './footer.scss';
 import {
 	InstagramOutlined,
 	FacebookOutlined,

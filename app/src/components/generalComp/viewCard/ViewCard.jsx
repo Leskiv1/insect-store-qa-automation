@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styled/viewCard.scss';
+import './viewCard.scss';
 
 const ViewCard = ({name, children, img, price}) => {
 	return (
@@ -9,7 +9,6 @@ const ViewCard = ({name, children, img, price}) => {
 				</div>
 				<div className="title">
 					<h2>{name}</h2>
-					fktkt
 					<span>{price}$</span>
 				</div>
 				<p>{children}</p>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '/Users/nazar/Desktop/Algorithm/LabWeb/app/src/styled/HeroSection.scss';
+import './HeroSection.scss';
 import butterfly from '../../../assets/imgs/butterfly.png';
 
 

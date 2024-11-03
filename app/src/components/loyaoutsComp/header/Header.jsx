@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
-import '../../../styled/header.scss';
+import './header.scss';
 import {
  BugOutlined,
  SearchOutlined,
@@ -23,7 +23,12 @@ const Header = () => {
       >
        Home
       </NavLink>
-      <a href="#" className="link">Catalog</a>
+      <NavLink
+								to='catalog'
+								className={({isActive}) => isActive ? 'link active' : 'link'}
+						>
+							Catalog
+				</NavLink>
       <a href="#" className="link">About</a>
       <a href="#" className="link">Contact</a>
      </nav>

@@ -1,0 +1,97 @@
+.card {
+	width: 350px;
+	height: 570px;
+	border-radius: 15px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+	transition: transform 0.2s; 
+	margin-bottom: 25px;
+	background-color: var(--Color-1, #C1DCDC);
+
+	&:hover {
+    transform: translateY(-10px);
+	 } /* Ефект випирання при наведенні */
+	
+
+	.img {
+			width: 100%;
+			height: 268px;
+			display: flex; /* Включаємо флекс-контейнер */
+			justify-content: center; /* Вирівнює по горизонталі */
+			align-items: center; /* Вирівнює по вертикалі */
+			margin: 0 auto;
+			background-color: #e2dede;
+			border-radius: 15px; /* Центрує контейнер */
+
+		img {
+			max-width: 100%; /* Зображення не перевищує ширину контейнера */
+			max-height: 100%; /* Зображення не перевищує висоту контейнера */
+			 width: auto; /* Зберігає пропорції */
+			 height: auto;
+		}
+	}
+
+	.title {
+		width: 90%;
+		display: flex;
+		justify-content: space-between; 
+		align-items: center; 
+		margin: 26px 10px 16px 10px;
+
+		h2, span {
+			color: var(--black);
+			font-size: 1.25rem;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+		}
+	}
+
+	p {
+		color: var(--Color-4, rgba(30, 30, 30, 0.50));
+		font-size: 0.8rem;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 228.571%;
+		width: 90%;
+		margin: 26px 10px 16px 10px;
+	}
+
+
+	.buttonsContainer {
+		display: flex;
+		column-gap: 20px;
+		justify-content: center;
+		
+		 
+
+		.update {
+			border-color: var(--black);
+			color: var(--black);
+			background-color: rgba(0, 0, 0, 0);
+			border: 4px solid var(--gray-text);
+			border-radius: 5px;
+			border-color: #E3E3E3;
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				background-color: rgba(255, 0, 0, 0.1);
+			}
+		}
+		.delete{
+			border-color: var(--black);
+			color: var(--black);
+			background-color: rgba(0, 0, 0, 0);
+			border: 4px solid var(--gray-text);
+			border-radius: 5px;
+			border-color: #ea7373;
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				background-color: rgba(255, 0, 0, 0.1);
+			}
+		}
+	}
+}

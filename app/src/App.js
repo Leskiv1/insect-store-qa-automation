@@ -1,16 +1,25 @@
-import './App.css';
-import {createBrowserRouter , RouterProvider} from 'react-router-dom';
-import Loyaut from  './components/pages/Layout';
-import HomePage from './components/pages/HomePage';
+import React from 'react';
+import {createBrowserRouter, Link, RouterProvider} from "react-router-dom";
+import Layout from "./components/pages/Layout";
+import HomePage from "./components/pages/HomePage";
+import CatalogPage from "./components/pages/CatalogPage/CatalogPage";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Loyaut />,
+    element: <Layout />,
     children: [
       {
         path: '',
-        element: <HomePage />,
+        element: <HomePage />
+      },
+      {
+        path: 'catalog',
+        element: <CatalogPage />,
+      },
+      {
+        path: '*',
+        element: <h1>Page not found</h1>,
       }
     ]
   }
@@ -18,7 +27,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router}/>
+      <RouterProvider router={router} />
   );
 }
 

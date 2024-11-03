@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styled/SeeMore.scss';
+import './SeeMore.scss';
 import {
 	ArrowRightOutlined
 	 } from "@ant-design/icons";

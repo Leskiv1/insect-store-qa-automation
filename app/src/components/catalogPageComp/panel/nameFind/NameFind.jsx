@@ -1,9 +1,15 @@
 import React from 'react';
 import './nameFind.scss';
 
-const NameFind = ({children, type}) => {
+const NameFind = ({children, type, value, onChange}) => {
 	return (
-			<input className="nameFind" placeholder={children} type={type}/>
+			<input
+					value={value}
+					onChange={onChange}
+					className="nameFind"
+					placeholder={children}
+					type={type}
+			/>
 	);
 };
 

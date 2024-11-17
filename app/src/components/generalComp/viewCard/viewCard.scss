@@ -1,6 +1,6 @@
 .card {
 	width: 300px;
-	height: 500px;
+	min-height: 500px;
 	border-radius: 15px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 	transition: transform 0.2s; 
@@ -52,6 +52,5 @@
 		font-weight: 500;
 		line-height: 228.571%;
 		width: 90%;
-		margin: 26px 10px 16px 10px;
 	}
 }

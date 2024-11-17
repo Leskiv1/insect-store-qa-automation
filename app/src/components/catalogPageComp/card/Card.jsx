@@ -1,8 +1,18 @@
 import React from 'react';
 import './card.scss';
 import Button from "../panel/button/Button";
+import {Link} from "react-router-dom";
 
-const Card = ({name, img, batches, price, description}) => {
+const NavButton = ({to, children, additionalClass=''}) => {
+	return (
+		<Link className={`navButton ${additionalClass}`} to={to}>
+			{children}
+		</Link>
+	);
+};
+ export {NavButton};
+
+const Card = ({name, img, batches, price, description, id}) => {
 	return (
 			<div className="card">
 				<div className="img">
@@ -15,10 +25,7 @@ const Card = ({name, img, batches, price, description}) => {
 					<span>{batches} batches</span>
 				</div>
 				<p>{description}</p>
-				<div className="buttonsContainer">
-					<Button additionalClass="update">Update</Button>
-					<Button additionalClass="delete">Delete</Button>
-				</div>
+				<NavButton additionalClass="buttonContainer" to={`/catalog/${id}`}>View more</NavButton>
 			</div>
 	);
 };

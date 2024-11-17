@@ -1,6 +1,6 @@
 .btn {
-	font-size: 1.3rem;
-	padding: 7px 10px;
+	font-size: 1.35rem;
+	padding: 7px 15px;
 	border-color: var(--black);
 	color: var(--black);
 	background-color: rgba(0, 0, 0, 0);
@@ -8,6 +8,7 @@
 	border-radius: 5px;
 	border-color: var(#1E1E1E);
 	transition: all 0.2s ease-in-out;
+	margin-top: 10px;
 
 	&:hover {
 		background-color: rgba(255, 0, 0, 0.1);

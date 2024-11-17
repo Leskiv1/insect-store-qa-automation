@@ -25,6 +25,7 @@ const Header = () => {
       </NavLink>
       <NavLink
 								to='catalog'
+                end
 								className={({isActive}) => isActive ? 'link active' : 'link'}
 						>
 							Catalog

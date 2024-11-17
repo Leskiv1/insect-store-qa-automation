@@ -1,8 +1,10 @@
 import React from 'react';
-import {createBrowserRouter, Link, RouterProvider} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Layout from "./components/pages/Layout";
 import HomePage from "./components/pages/HomePage";
 import CatalogPage from "./components/pages/CatalogPage/CatalogPage";
+import InsectsProvider from './components/context/InsectsContext';
+import CardPage from './components/pages/CardsPage/CardsPage';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
         element: <CatalogPage />,
       },
       {
+        path: 'catalog/:id',
+        element: <CardPage />
+      },
+      {
         path: '*',
         element: <h1>Page not found</h1>,
       }
@@ -27,7 +33,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-      <RouterProvider router={router} />
+    <InsectsProvider>
+    <RouterProvider router={router} />
+  </InsectsProvider>
   );
 }
 

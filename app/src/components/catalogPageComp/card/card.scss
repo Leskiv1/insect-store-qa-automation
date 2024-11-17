@@ -1,11 +1,14 @@
 .card {
 	width: 350px;
-	height: 570px;
+	min-height: 550px;
 	border-radius: 15px; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 	transition: transform 0.2s; 
 	margin-bottom: 25px;
 	background-color: var(--Color-1, #C1DCDC);
+	display: flex;
+	flex-direction: column; /* Дозволяє елементам картки розташовуватись вертикально */
+	align-items: center; /* Цент
 
 	&:hover {
     transform: translateY(-10px);
@@ -56,42 +59,28 @@
 		font-weight: 500;
 		line-height: 228.571%;
 		width: 90%;
-		margin: 26px 10px 16px 10px;
 	}
 
 
-	.buttonsContainer {
-		display: flex;
-		column-gap: 20px;
-		justify-content: center;
-		
-		 
-
-		.update {
-			border-color: var(--black);
-			color: var(--black);
-			background-color: rgba(0, 0, 0, 0);
-			border: 4px solid var(--gray-text);
-			border-radius: 5px;
-			border-color: #E3E3E3;
-			transition: all 0.2s ease-in-out;
-
-			&:hover {
-				background-color: rgba(255, 0, 0, 0.1);
-			}
-		}
-		.delete{
-			border-color: var(--black);
-			color: var(--black);
-			background-color: rgba(0, 0, 0, 0);
-			border: 4px solid var(--gray-text);
-			border-radius: 5px;
-			border-color: #ea7373;
-			transition: all 0.2s ease-in-out;
-
-			&:hover {
-				background-color: rgba(255, 0, 0, 0.1);
-			}
-		}
+  .buttonContainer {
+	width: 150px;
+	font-size: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	border-color: var(--black);
+	color: var(--black);
+	background-color: rgba(0, 0, 0, 0);
+	border: 4px solid var(--gray-text);
+	border-radius: 5px;
+	transition: all 0.2s ease-in-out;
+	
+	&:hover {
+	background-color: rgba(255, 0, 0, 0.1);
 	}
+}
+
 }

@@ -12,7 +12,7 @@ const HeroSection = () => {
 						<h3>Here you can find not only beauty for your yard, but also health workers for your flowers</h3>
 						<div>
 							<p>50+<br />Insects species</p>
-							<p1>|</p1>
+							<p>|</p>
 							<p>100+<br />Customers</p>
 						</div>
 					</div>

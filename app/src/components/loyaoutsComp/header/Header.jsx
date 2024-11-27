@@ -30,8 +30,12 @@ const Header = () => {
 						>
 							Catalog
 				</NavLink>
-      <a href="#" className="link">About</a>
-      <a href="#" className="link">Contact</a>
+        <NavLink
+        to='cart'
+        className={({isActive}) => isActive ? 'link active' : 'link'}
+        >
+         Cart
+        </NavLink>
      </nav>
      <div className="icons">
       <SearchOutlined />

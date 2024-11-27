@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import insectRoute from "./routes/insect.route.js";
+import cartRoute from "./routes/cart.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/insects', insectRoute);
+app.use('/api/carts', cartRoute);
 
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);

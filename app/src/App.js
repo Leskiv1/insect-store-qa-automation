@@ -4,6 +4,9 @@ import Layout from "./components/pages/Layout";
 import HomePage from "./components/pages/HomePage";
 import CatalogPage from "./components/pages/CatalogPage/CatalogPage";
 import CardPage from './components/pages/CardsPage/CardsPage';
+import {Provider} from "react-redux";
+import store from './assets/store/store'
+import CartPage from "./components/pages/cartPage/CartPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,10 @@ const router = createBrowserRouter([
         element: <CardPage />
       },
       {
+        path: 'cart',
+        element: <CartPage />
+      },
+      {
         path: '*',
         element: <h1>Page not found</h1>,
       }
@@ -32,7 +39,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
-    <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
   );
 }
 

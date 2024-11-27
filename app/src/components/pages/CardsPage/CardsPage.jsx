@@ -3,15 +3,34 @@ import {useParams} from "react-router-dom";
 import butterflyImg from '../../../assets/imgs/butterfly_2.png';
 import beeImg from '../../../assets/imgs/bee.png';
 import ladybagImg from '../../../assets/imgs/ladybag.png';
-import { NavButton } from '../../catalogPageComp/card/Card';
 import {getInsectById} from "../../../assets/api/api";
-import './CardsPage.scss'
+import {useNavigate} from "react-router-dom";
+import Button from '../../generalComp/button/Button';
+import './CardsPage.scss';
+import SelectSort from "../../catalogPageComp/panel/selectSort/SelectSort";
+import IntInput from "../../generalComp/intInput/IntInput";
+import {useDispatch} from "react-redux";
+import {updateCount} from "../../../assets/store/cartSlice";
 
+const colorOptions = new Map([
+	['red', 'red'],
+	['green', 'green'],
+	['yellow', 'yellow'],
+]);
 
+const images = {
+	butterfly: butterflyImg,
+	bee: beeImg,
+	ladybug: ladybagImg,
+};
 
 const CardPage= () => {
 	const {id} = useParams();
 	const [insect, setInsect] = useState({});
+	const navigate = useNavigate();
+	const [colorOption, setColorOption] = useState('red');
+	const [count, setCount] = useState(1);
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -20,12 +39,6 @@ const CardPage= () => {
 		}
 		fetchData().then()
 	}, [])
-
-	const images = {
-		butterfly: butterflyImg,
-		bee: beeImg,
-		ladybug: ladybagImg,
-	};
 
 	return (
 		<main className=" cardPage">
@@ -39,13 +52,31 @@ const CardPage= () => {
 							<span className="batches">Batches: {insect.batches}</span>
 						<h2 className="name">{insect.name}</h2>
 						<p className="description">{insect.description}</p>
+						<SelectSort
+								value={colorOption}
+								onChange={(e) => setColorOption(e.target.value)}
+								labelText="Select color"
+								sortName="color"
+								options={colorOptions}
+						/>
+						<IntInput
+								value={count}
+								setValue={setCount}
+						/>
 					</div>
 				</div>
 				<div className="itemFooter">
 					<span className="price">Price: {insect.price}$</span>
 					<div className="buttons">
-						{/* <Button onClick={() => alert('Coming soon')} additionalClass="itemButton">Add to cart</Button> */}
-						<NavButton to="/catalog">Go back</NavButton>
+						 <Button onClick={async () => {
+							 await dispatch(updateCount({
+								 color: colorOption,
+								 count,
+								 insect_id: id,
+							 }));
+							 navigate('/cart')
+						 }} additionalClass="itemButton">Add to cart</Button>
+						<Button onClick={() => navigate(-1)}>Go back</Button>
 					</div>
 				</div>
 			</div>

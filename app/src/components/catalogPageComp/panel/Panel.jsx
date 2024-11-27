@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import SelectSort from "./selectSort/SelectSort";
 import NameFind from "./nameFind/NameFind";
-import Button from "./button/Button";
+import Button from "../../generalComp/button/Button";
 import './panel.scss';
 import {getInsects} from "../../../assets/api/api";
 

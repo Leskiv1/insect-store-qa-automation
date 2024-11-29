@@ -6,7 +6,7 @@ class CartController {
 	static async getCarts (req, res) {
 		try {
 			const carts = await Cart.findAll({
-				attributes: ['id', 'count', 'color'],
+				attributes: ['id', 'count', 'year'],
 				include: [
 					{
 						model: Insect,
@@ -34,13 +34,13 @@ class CartController {
 	}
 
 	static async createOrUpdateCart(req, res) {
-		const { insect_id, count, color } = req.body;
+		const { insect_id, count, year } = req.body;
 
 		try {
 			const existingCart = await Cart.findOne({
 				where: {
 					insect_id,
-					color,
+					year,
 				},
 				include: [
 					{
@@ -57,11 +57,11 @@ class CartController {
 				await existingCart.reload();
 
 				return res.status(200).json({
-					message: `Updated cart with insect_id=${insect_id} and color='${color}'.`,
+					message: `Updated cart with insect_id=${insect_id} and year='${year}'.`,
 					cart: {
 						id: existingCart.id,
 						count: existingCart.count,
-						color: existingCart.color,
+						year: existingCart.year,
 						insect: existingCart.insect,
 					},
 				});
@@ -69,7 +69,7 @@ class CartController {
 				const newCart = await Cart.create({
 					insect_id,
 					count,
-					color,
+					year,
 				});
 
 				const cartWithInsect = await Cart.findOne({
@@ -87,7 +87,7 @@ class CartController {
 					cart: {
 						id: cartWithInsect.id,
 						count: cartWithInsect.count,
-						processing: cartWithInsect.color,
+						processing: cartWithInsect.year,
 						insect: cartWithInsect.insect,
 					},
 				});

@@ -34,7 +34,7 @@ const Header = () => {
         to='cart'
         className={({isActive}) => isActive ? 'link active' : 'link'}
         >
-         Cart
+        Shopping cart
         </NavLink>
      </nav>
      <div className="icons">

@@ -50,6 +50,12 @@ const CountInput = ({startCount, updateCount, deleteCart}) => {
 							setValue(prev => prev + 1);
 						}}
 				>+</button>
+				 <button
+  className="delete"
+  onClick={deleteCart} // Виклик функції
+>
+  Видалити
+</button>
 			</div>
 	);
 };

@@ -8,7 +8,9 @@ const Card = ({name, img, batches, price, description, id}) => {
 	return (
 			<div className="card">
 				<div className="img">
-					<img src={img} alt=""/>
+				<NavButton to={`/catalog/${id}`}>
+					<img src={img} alt={name} />
+				</NavButton>
 				</div>
 				<div className="title">
 					<h2>{name}

@@ -63,9 +63,9 @@ export async function getCarts() {
   }
 }
 
-export async function updateCartCount({insect_id, count, color}) {
+export async function updateCartCount({insect_id, count, year}) {
   try {
-    const response = await cartApi.post(`/`, {count, insect_id, color});
+    const response = await cartApi.post(`/`, {count, insect_id, year});
     return response.data
   } catch (error) {
     if (error.response) {

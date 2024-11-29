@@ -12,10 +12,10 @@ import IntInput from "../../generalComp/intInput/IntInput";
 import {useDispatch} from "react-redux";
 import {updateCount} from "../../../assets/store/cartSlice";
 
-const colorOptions = new Map([
-	['red', 'red'],
-	['green', 'green'],
-	['yellow', 'yellow'],
+const yearOptions = new Map([
+	['2024', '2024'],
+	['2023', '2023'],
+	['2022', '2022'],
 ]);
 
 const images = {
@@ -28,7 +28,7 @@ const CardPage= () => {
 	const {id} = useParams();
 	const [insect, setInsect] = useState({});
 	const navigate = useNavigate();
-	const [colorOption, setColorOption] = useState('red');
+	const [yearOption, setYearOption] = useState('2024');
 	const [count, setCount] = useState(1);
 	const dispatch = useDispatch()
 
@@ -53,11 +53,11 @@ const CardPage= () => {
 						<h2 className="name">{insect.name}</h2>
 						<p className="description">{insect.description}</p>
 						<SelectSort
-								value={colorOption}
-								onChange={(e) => setColorOption(e.target.value)}
-								labelText="Select color"
-								sortName="color"
-								options={colorOptions}
+								value={yearOption}
+								onChange={(e) => setYearOption(e.target.value)}
+								labelText="Year of birth"
+								sortName="year"
+								options={yearOptions}
 						/>
 						<IntInput
 								value={count}
@@ -70,12 +70,12 @@ const CardPage= () => {
 					<div className="buttons">
 						 <Button onClick={async () => {
 							 await dispatch(updateCount({
-								 color: colorOption,
+								 year: yearOption,
 								 count,
 								 insect_id: id,
 							 }));
 							 navigate('/cart')
-						 }} additionalClass="itemButton">Add to cart</Button>
+						 }} additionalClass="itemButton">Add to shop</Button>
 						<Button onClick={() => navigate(-1)}>Go back</Button>
 					</div>
 				</div>

@@ -21,4 +21,21 @@
 		font-size: 1.5rem;
 		text-align: end;
 	}
+	.cart{
+		background-color:var(--Color-1, #C1DCDC);
+
+		.img{
+			background-color: #e2dede;
+			border-radius: 15px;
+		}
+		.processing {
+			div {
+			  display: flex;
+			  flex-direction: column;
+			  align-items: start;
+			  font-size: 20px;
+			}
+		  }
+		  
+	}
 }

@@ -5,8 +5,8 @@ export const fetchCarts = createAsyncThunk('carts/fetchCarts', async () => {
 	return await getCarts();
 });
 
-export const updateCount = createAsyncThunk('carts/updateCount', async ({insect_id, count, color}) => {
-	const {cart} = await updateCartCount({insect_id, count, color});
+export const updateCount = createAsyncThunk('carts/updateCount', async ({insect_id, count, year}) => {
+	const {cart} = await updateCartCount({insect_id, count, year});
 	return cart;
 });
 
@@ -40,7 +40,7 @@ const cartSlice = createSlice({
 				})
 				.addCase(updateCount.fulfilled, (state, action) => {
 					const cart = action.payload;
-					const existingCart = state.carts.find((exCart)=> exCart.insect.id === cart.insect.id && exCart.color === cart.color);
+					const existingCart = state.carts.find((exCart)=> exCart.insect.id === cart.insect.id && exCart.year === cart.year);
 					if (existingCart) {
 						existingCart.count = cart.count;
 					} else {

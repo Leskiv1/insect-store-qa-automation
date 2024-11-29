@@ -37,12 +37,17 @@ const CartPage = () => {
 										img={images[cart.insect.type]}
 										name={cart.insect.name}
 										key={cart.id}
-										price={cart.insect.price}
+										price={cart.insect.price * cart.count}
 										count={cart.count}
-										processing={cart.color}
+										processing={
+											<div>
+											  <span>Рік:</span>
+											  {cart.year}
+											</div>
+										  }
 										updateCount={(newCount) => dispatch(updateCount({
 											insect_id: cart.insect.id,
-											color: cart.color,
+											year: cart.year,
 											count: newCount,
 										}))}
 										deleteCart={() => dispatch(removeCart(cart.id))}

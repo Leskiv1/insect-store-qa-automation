@@ -8,6 +8,7 @@ const regx = {
   name: /^[а-яА-ЯіїєІЇЄa-zA-Z'’\-]{2,20}$/,
   phone: /^\+?[0-9]{10,13}$/, 
   email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,4}$/,
+  deliveryAddress: /^вул\.\s*[а-яА-ЯіїєІЇЄa-zA-Z'’\-]+\s*,\s*\d+\s*,\s*м\.\s*[а-яА-ЯіїєІЇЄa-zA-Z'’\-]+$/,
 };
 
 const validationSchema = Yup.object().shape({
@@ -23,30 +24,47 @@ const validationSchema = Yup.object().shape({
   phone: Yup.string()
     .matches(regx.phone, "Номер телефону має складатися з 10-13 цифр, може починатися з '+'.")
     .required("Номер телефону є обов'язковим."),
-  yearOfBirth: Yup.number()
-    .min(16, "Вам має бути більше 16 років.")
-    .required("Вік є обов'язковим."),
+  deliveryAddress: Yup.string()
+    .matches(
+      regx.deliveryAddress,
+      "Адреса має бути у форматі: вул. Назва, номер, м. Місто."
+    )
+    .required("Адреса доставки є обов'язковою."),
 });
+
 
 const initialValues = {
   firstname: "",
   lastname: "",
   email: "",
   phone: "",
-  yearOfBirth: "",
+  deliveryAddress: "",
 };
 
 const FormComponent = () => {
   const navigate = useNavigate();
 
-  const handleSubmit = (values) => {
-    console.log(values);
-    navigate("/success");
-  };
+  const handleSubmit = async (values) => {
+    try {
+        console.log(values);
+
+        const response = await fetch('/api/carts', { method: 'DELETE' });
+
+        if (response.ok) {
+            console.log("Cart cleared successfully.");
+        } else {
+            console.error("Failed to clear the cart.");
+        }
+
+        navigate("/success");
+    } catch (error) {
+        console.error("Error during form submission or cart clearing:", error);
+    }
+};
 
   return (
     <div className="form-container">
-      <h1 className="form-title">Реєстрація</h1>
+      <h1 className="form-title">Checkout</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -118,24 +136,23 @@ const FormComponent = () => {
             />
           </div>
           <div className="input-container">
-            <label htmlFor="yearOfBirth" className="input-label">
-              Вік
+            <label htmlFor="deliveryAddress" className="input-label">
+              Адреса доставки
             </label>
             <Field
-              name="yearOfBirth"
-              id="yearOfBirth"
-              type="number"
-              placeholder="Введіть ваш вік"
+              name="deliveryAddress"
+              id="deliveryAddress"
+              placeholder="Введіть адресу доставки"
               className="input-field"
             />
             <FormikErrorMessage
-              name="yearOfBirth"
+              name="deliveryAddress"
               component="div"
               className="error-message"
             />
           </div>
           <button type="submit" className="submit-button">
-            Зареєструватися
+            Continue
           </button>
         </Form>
       </Formik>
@@ -144,6 +161,7 @@ const FormComponent = () => {
 };
 
 export default FormComponent;
+
 
 
 

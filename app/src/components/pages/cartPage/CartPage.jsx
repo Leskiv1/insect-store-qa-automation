@@ -6,6 +6,7 @@ import {fetchCarts, updateCount, removeCart} from "../../../assets/store/cartSli
 import butterflyImg from "../../../assets/imgs/butterfly_2.png";
 import beeImg from "../../../assets/imgs/bee.png";
 import ladybagImg from "../../../assets/imgs/ladybag.png";
+import { Link } from 'react-router-dom';
 
 const images = {
 	butterfly: butterflyImg,
@@ -51,12 +52,18 @@ const CartPage = () => {
 											count: newCount,
 										}))}
 										deleteCart={() => dispatch(removeCart(cart.id))}
+
 								/>
 						))}
 					</div>
 					<p className="totalPrice">
 						Total price: {+totalPrice}$
 					</p>
+					<div className="button-container">
+					<Link to="/signup" className="continue-button">
+					Continue
+					</Link>
+					</div>
 				</div>
 			</div>
 	);

@@ -41,7 +41,7 @@ const Header = () => {
       <SearchOutlined />
       <ShoppingOutlined />
       <p>|</p>
-      <Link to="/signup"><UserOutlined /></Link>
+      <UserOutlined />
      </div>
     </div>
    </header>

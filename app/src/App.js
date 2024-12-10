@@ -7,6 +7,8 @@ import CardPage from './components/pages/CardsPage/CardsPage';
 import {Provider} from "react-redux";
 import store from './assets/store/store'
 import CartPage from "./components/pages/cartPage/CartPage";
+import SignupForm from "./components/pages/FormPage/FormPage";
+import SuccessPage from './components/pages/SuccessPage/SuccessPage';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: 'cart',
         element: <CartPage />
+      },
+      {
+        path: 'signup', // Новий маршрут для форми
+        element: <SignupForm />
+      },
+      {
+        path: 'success', // Новий маршрут для форми
+        element: <SuccessPage />
       },
       {
         path: '*',

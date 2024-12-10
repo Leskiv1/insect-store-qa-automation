@@ -1,0 +1,35 @@
+.success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 67vh;
+    text-align: center;
+  }
+  
+  .success-title {
+    font-size: 2rem;
+    color: #28a745;
+  }
+  
+  .success-message {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #333;
+  }
+  
+  .success-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .success-button:hover {
+    background-color: #0056b3;
+  }
+  

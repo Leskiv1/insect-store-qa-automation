@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: test_mysql_db
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-12345}
+      MYSQL_DATABASE: ${DB_NAME:-TestDB}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # 1. Мапінг init.sql переїхав сюди:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      # Додав пароль до healthcheck, щоб гарантовано працювало
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-12345}"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - lab_network # 2. Підключили БД до спільної мережі
+
+  backend:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: web_backend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: mysql-db
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
+      NODE_ENV: ${NODE_ENV}
+      PORT: ${PORT}
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    volumes:
+      - ./back:/app
+      - /app/node_modules
+    command: npm run dev
+    networks:
+      - lab_network # 2. Виправили назву мережі
+
+  frontend:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: web_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000
+      CI: "false"
+    depends_on:
+      - backend
+    volumes:
+      - ./app:/app
+      - /app/node_modules
+    command: npm start
+    networks:
+      - lab_network # 2. Виправили назву мережі
+
+# 3. Виправлений синтаксис (без дефісів, тільки назва з двокрапкою)
+volumes:
+  mysql_data:
+
+networks:
+  lab_network:
+    driver: bridge

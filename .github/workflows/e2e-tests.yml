@@ -1,0 +1,83 @@
+name: E2E Tests CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  e2e-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      # Створюємо фейковий .env, щоб Docker Compose не кидав попередження. 
+      # Використовуємо ті самі дефолтні значення!
+      - name: Create dummy .env for Docker
+        run: |
+          echo "DB_PASSWORD=12345" >> .env
+          echo "DB_NAME=TestDB" >> .env
+          echo "DB_USER=root" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "NODE_ENV=test" >> .env
+          echo "PORT=5000" >> .env
+
+      - name: Start Full-Stack App via Docker Compose
+        run: docker-compose up --build -d
+
+      - name: Install Python dependencies
+        run: |
+          cd e2e_tests
+          pip install -r requirements.txt
+
+      - name: Wait for services to be ready
+        run: |
+          timeout 30 bash -c 'until curl -s http://127.0.0.1:5000 > /dev/null; do echo "Waiting for backend..."; sleep 2; done'
+          timeout 30 bash -c 'until curl -s http://127.0.0.1:3000 > /dev/null; do echo "Waiting for frontend..."; sleep 2; done'
+
+      - name: Run E2E tests
+        run: |
+          cd e2e_tests
+          pytest -v --tb=short --html=report.html --self-contained-html
+        env:
+          FRONTEND_URL: http://127.0.0.1:3000
+          BACKEND_URL: http://127.0.0.1:5000
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-report
+          path: e2e_tests/report.html
+
+      - name: Upload screenshots (on failure)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-screenshots
+          path: e2e_tests/screenshots/
+          if-no-files-found: ignore
+
+      - name: Comment PR with test results
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const testReport = fs.existsSync('e2e_tests/report.html') ? 'Report available in artifacts' : 'Report not generated';
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## E2E Test Results\n\n✅ Tests executed. ${testReport}`
+            });

@@ -1,26 +1,85 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-node_modules
+# Dependencies
+node_modules/
 /.pnp
 .pnp.js
+package-lock.json
+yarn.lock
 
-# testing
+# Testing
 /coverage
+.nyc_output
 
-# production
+# Production
 /build
+/dist
+/app/build
 
-# misc
-.DS_Store
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
+# IDE & Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+lerna-debug.log*
+*.log
 
+# Runtime
+.nodemon.json
+.cache/
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# Docker
+.docker/
+
+# Database
+*.sql
+dump.sql
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+
+# IDE specific
+.vscode
 .idea
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# Node-RED specific (if used)
+node-red/
+
+# E2E testing
+e2e/report/
+e2e/screenshots/
+
+!init.sql

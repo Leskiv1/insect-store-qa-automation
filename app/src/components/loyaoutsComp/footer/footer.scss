@@ -1,0 +1,43 @@
+.footer {
+	background-color: #B6B5B5;
+	padding: 22px 0;
+	width: 100%;
+	margin-top: 100px;
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+
+		span {
+			color: #E3E3E3;
+			font-size: 1.5rem;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 200%;
+			padding-right: 15%;
+		}
+
+		p {
+			color: var(--Color-4, rgba(30, 30, 30, 0.50));
+			font-family: Poppins;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: normal;
+		}
+
+		nav {
+			display: flex;
+			align-items: center;
+			column-gap: 20px;
+			
+
+			p {
+				font-size: 35px;
+				color:#E3E3E3;
+			}
+		}
+	}
+}

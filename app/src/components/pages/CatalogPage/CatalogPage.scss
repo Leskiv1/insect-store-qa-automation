@@ -1,0 +1,17 @@
+main {
+	.cardContainer {
+		min-height: 70vh;
+		display: flex;
+		flex-wrap: wrap;
+		//align-items: center;
+		justify-content: space-between;
+		gap: 36px;
+		padding: 50px 0;
+
+		.loader-container{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}

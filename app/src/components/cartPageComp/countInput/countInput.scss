@@ -1,0 +1,58 @@
+.countInput {
+	input {
+		-moz-appearance: textfield;
+	}
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	button {
+		height: 50px;
+		width: 50px;
+		border: 1px solid #000;
+		border-radius: 15px;
+		background-color: rgba(0, 0, 0, 0);
+		font-size: 1.8rem;
+		font-weight: 400;
+		cursor: pointer;
+		transition: background-color 0.3s;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	}
+
+	input {
+		height: 50px;
+		width: 50px;
+		background-color: rgba(0, 0, 0, 0);
+		text-align: center;
+		font-size: 1.2rem;
+	}
+
+	/* Додаємо стилі для кнопки видалення */
+	.delete {
+		width: auto;
+		height: auto;
+		padding: 10px 20px;
+		color: white;
+		font-size: 1.4rem;
+		border-radius: 10px;
+		border: none;
+		font-weight: bold;
+		cursor: pointer;
+		transition: background-color 0.3s, transform 0.2s;
+		margin-left: 50px;
+
+		&:hover {
+			background-color: darkred;
+			transform: scale(1.05);
+		}
+
+		&:active {
+			transform: scale(0.95);
+		}
+	}
+}

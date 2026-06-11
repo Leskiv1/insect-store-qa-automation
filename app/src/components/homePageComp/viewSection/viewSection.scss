@@ -1,0 +1,28 @@
+.view {
+	padding-top: 150px;
+
+	.container {
+		max-width: 100%;
+		background-color: #C1DCDC;
+		h1 {
+			color: var(--black);
+			font-size: 3.25rem;
+			font-style: normal;
+			font-weight: 600;
+			line-height: normal;
+			text-align: center;
+			padding: 20px 0 10px 0;
+		}
+
+		.cardContainer {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.buttonContainer {
+			display: flex;
+			justify-content: center;
+		}
+	}
+}

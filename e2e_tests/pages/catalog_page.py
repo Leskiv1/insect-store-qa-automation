@@ -1,7 +1,10 @@
 from selenium.webdriver.common.by import By
 from pages.base_page import BasePage
 from selenium.common import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException, TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+import time
 
 class CatalogPage(BasePage):
     """
@@ -30,15 +33,25 @@ class CatalogPage(BasePage):
     def get_item_name(self):
         return self.get_direct_text(self.ITEM_NAME)
 
-    def get_information_about_catalog(self):
+    def get_information_about_catalog(self, timeout=5):
         """
         Retrieves text content from all catalog item name elements.
         
         Returns:
             List of strings containing item information (names/prices).
         """
-        names_with_price = self.find_elements(self.ITEM_NAME)
-        return [information.text for information in names_with_price]
+        end_time = time.time() + timeout
+        
+        while time.time() < end_time:
+            try:
+                names_with_price = self.find_elements(self.ITEM_NAME)
+                
+                return [information.text for information in names_with_price]
+                
+            except StaleElementReferenceException:
+                continue  
+                
+        raise TimeoutException("Unable to retrieve catalog data: items were constantly being updated (Stale).")
 
     def is_item_exist(self, name):
         """
@@ -79,3 +92,9 @@ class CatalogPage(BasePage):
 
         if first_old_item:
             self.wait.until(EC.staleness_of(first_old_item))
+
+    def wait_for_item_name_to_load(self, expected_name, timeout=5):
+        
+        WebDriverWait(self.driver, timeout).until(
+            EC.text_to_be_present_in_element(self.ITEM_NAME, expected_name)
+        )

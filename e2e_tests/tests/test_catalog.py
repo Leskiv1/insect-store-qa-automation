@@ -34,6 +34,8 @@ def test_type_any_exist_full_name(driver):
 
     catalog_page.find_item_by_text_search(name)
 
+    catalog_page.wait_for_item_name_to_load(name)
+
     item_name = catalog_page.get_item_name()
 
     assert item_name == name

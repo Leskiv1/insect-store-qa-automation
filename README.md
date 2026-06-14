@@ -174,40 +174,65 @@ Source code of the React frontend and Node.js backend.
 
 ---
 
-# 🛠️ Manual Launch & Interaction
+## 🛠️ Manual Launch & Interaction
 
-If you want to manually explore the application or develop additional tests:
+If you want to manually explore the application or develop additional tests, follow the steps below.
 
-## 1. Start the Application
+### 1. Start the Application
+
+Run the following command from the project root:
 
 ```bash
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 This command starts:
 
 * Frontend
 * Backend
-* MySQL database with pre-populated test data
+* MySQL database pre-populated with test data
 
-## 2. Access the Application
+---
 
-### Frontend
+### 2. Access the Application
+
+**Frontend**
 
 ```text
 http://localhost:3000
 ```
 
-### Backend API
+**Backend API**
 
 ```text
 http://localhost:5000
 ```
 
-## 3. Stop and Clean Up
+---
+
+### 3. Run Tests Manually (Local Debugging)
+
+Once the application is running in Docker, you can execute the test suite directly using **Pytest** in your local Python environment. This is the recommended approach when debugging existing tests or developing new ones.
+
+For detailed instructions on:
+
+* setting up the Python virtual environment,
+* installing dependencies,
+* running individual test files,
+* generating HTML reports,
+* understanding the framework architecture,
+* following testing best practices,
+
+please refer to the **[E2E Testing Guide](e2e_tests/E2E_TESTING_GUIDE.md)**.
+
+---
+
+### 4. Stop and Clean Up
+
+When you are finished testing, stop all containers and remove the associated Docker volumes (including the database data):
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 ---
